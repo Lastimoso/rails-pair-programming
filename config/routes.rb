@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :companies
   # Sidekiq Web UI, only for admins.
   require "sidekiq/web"
   authenticate :user, ->(user) { user.admin? } do

@@ -1,0 +1,46 @@
+
+<%= simple_form_for(@company) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :url %>
+    <%= f.input :linkedin_url %>
+    <%= f.input :founded_at %>
+    <%= f.input :headquarters_country, collection: Company::COUNTRIES %>
+    <%= f.input :headquarters_city %>
+    <%= f.input :"industries",
+                collection: f.object.industries,
+                placeholder: "Start typing...",
+                label_html: { class: "font-medium leading-6 text-blue text-sm mb-1" },
+                input_html: {
+                  multiple: true,
+                  class: "capitalize",
+                  data: {
+                    controller: "tom-select",
+                    tom_select_create_value: true,
+                    tom_select_hide_selected_value: false,
+                    tom_select_plugins_value: [:remove_button, :checkbox_options, :no_active_items, :no_backspace_delete].to_json,
+                  }
+                }  %>
+    <%= f.input :"keywords",
+                collection: f.object.keywords,
+                placeholder: "Start typing...",
+                label_html: { class: "font-medium leading-6 text-blue text-sm mb-1" },
+                input_html: {
+                  multiple: true,
+                  class: "capitalize",
+                  data: {
+                    controller: "tom-select",
+                    tom_select_create_value: true,
+                    tom_select_hide_selected_value: false,
+                    tom_select_plugins_value: [:remove_button, :checkbox_options, :no_active_items, :no_backspace_delete].to_json,
+                  }
+                }  %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>
