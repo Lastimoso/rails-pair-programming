@@ -2,10 +2,12 @@ require "test_helper"
 
 class CompaniesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @company = companies(:one)
+    @company = companies(:apple)
+    login_as users(:user)
   end
 
   test "should get index" do
+
     get companies_url
     assert_response :success
   end
@@ -17,7 +19,7 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create company" do
     assert_difference("Company.count") do
-      post companies_url, params: { company: { founded_at: @company.founded_at, headquarters_city: @company.headquarters_city, headquarters_country: @company.headquarters_country, industries: @company.industries, keywords: @company.keywords, linkedin_url: @company.linkedin_url, metadata: @company.metadata, name: @company.name, url: @company.url } }
+      post companies_url, params: { company: {  name: "New unique name" } }
     end
 
     assert_redirected_to company_url(Company.last)
