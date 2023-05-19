@@ -36,6 +36,11 @@ class CompaniesController < ApplicationController
     redirect_to companies_path, notice: "Company was successfully destroyed."
   end
 
+  def destroy_all
+    Company.destroy_all
+    redirect_to root_path, notice: "All companies were successfully destroyed."
+  end
+
   private
     def set_company
       @company = Company.find(params[:id])
