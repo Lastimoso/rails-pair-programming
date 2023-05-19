@@ -37,4 +37,12 @@ class Company < ApplicationRecord
   validates :name, presence: true
   validates :name, uniqueness: { allow_blank: true}
   validates :headquarters_country, inclusion: { in: COUNTRIES, allow_blank: true }
+
+  def score
+    score = 0
+    score += (Date.current.year - self.founded_at.to_i) * 5
+    score += self.employee_count
+    score += industries.any? { |industry| industry.downcase.include? "tech" } ? 100 : 0
+    score
+  end
 end
