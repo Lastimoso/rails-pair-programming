@@ -40,8 +40,8 @@ class Company < ApplicationRecord
 
   def score
     score = 0
-    score += (Date.current.year - self.founded_at.to_i) * 5
-    score += self.employee_count
+    score += (Date.current.year - founded_at.to_i) * 5
+    score += employee_count
     score += industries.any? { |industry| industry.downcase.include? "tech" } ? 100 : 0
     score
   end
