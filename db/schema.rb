@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_11_144956) do
     t.string "url"
     t.string "linkedin_url"
     t.string "founded_at"
+    t.integer "employee_count"
     t.string "headquarters_country"
     t.string "headquarters_city"
     t.string "industries", default: [], null: false, array: true

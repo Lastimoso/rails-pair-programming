@@ -5,6 +5,7 @@ class CreateCompanies < ActiveRecord::Migration[7.0]
       t.string :url
       t.string :linkedin_url
       t.string :founded_at
+      t.integer :employee_count
       t.string :headquarters_country
       t.string :headquarters_city
       t.string :industries, array: true, null: false, default: []
